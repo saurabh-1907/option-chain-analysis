@@ -1,0 +1,55 @@
+import os
+import requests
+import pandas as pd
+from typing import Optional, Dict, Any
+
+def get_option_chain_data(instrument_name: str, expiry_date: str, side: str) -> pd.DataFrame:
+    """
+    Fetch option chain data for a given instrument and expiry date.
+    
+    Args:
+        instrument_name (str): Name of the instrument (e.g., "NSE_INDEX|Nifty 50")
+        expiry_date (str): Expiry date in YYYY-MM-DD format
+        side (str): Option type - "PE" for Put or "CE" for Call
+    
+    Returns:
+        pd.DataFrame: DataFrame containing option chain data
+    """
+    ACCESS_TOKEN = os.getenv("UPSTOX_ACCESS_TOKEN")
+    if not ACCESS_TOKEN:
+        raise ValueError("Upstox API access token not found in environment variables")
+
+    url = 'https://api.upstox.com/v2/option/chain'
+    params = {
+        'instrument_key': instrument_name,
+        'expiry_date': expiry_date
+    }
+    headers = {
+        'Accept': 'application/json',
+        'Authorization': f'Bearer {ACCESS_TOKEN}'
+    }
+
+    try:
+        response = requests.get(url, params=params, headers=headers)
+        response.raise_for_status()
+        data = response.json()
+        
+        entries = []
+        for option in data.get('data', []):
+            strike_price = option['strike_price']
+            if side == "PE":
+                price = option['put_options']['market_data']['bid_price']
+            else:  # CE
+                price = option['call_options']['market_data']['ask_price']
+                
+            entries.append({
+                'instrument_name': data.get('underlying_key', instrument_name),
+                'strike_price': strike_price,
+                'side': side,
+                'bid/ask': price
+            })
+        
+        return pd.DataFrame(entries)
+    
+    except requests.exceptions.RequestException as e:
+        raise ConnectionError(f"Failed to fetch option chain data: {str(e)}")
