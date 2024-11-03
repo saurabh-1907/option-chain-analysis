@@ -93,8 +93,10 @@ options-chain-analysis/
 ├── margin_calculator.py      # Margin and premium calculations
 ├── requirements.txt          # Project dependencies
 ├── .env                      # Environment variables (not in repo)
-└── README.md                 # Project documentation
-### **Explanation of Key Files**
+└── README.md                 # Project documentation```
+
+
+ ###**Explanation of Key Files**
 
 - **`streamlit_app.py`**: Implements the **Streamlit interface** and handles **user input** and **data display**.
 - **`option_chain.py`**: Communicates with **Upstox API**, processes API responses, and includes **error handling**.
