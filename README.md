@@ -85,8 +85,6 @@ This project provides an interactive tool to analyze **options chain data from I
 ---
 
 ## **Project Structure**
-
-```plaintext
 options-chain-analysis/
 ├── streamlit_app.py          # Main Streamlit application
 ├── option_chain.py           # Option chain data fetching module
