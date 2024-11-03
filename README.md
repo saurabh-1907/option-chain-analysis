@@ -85,13 +85,15 @@ This project provides an interactive tool to analyze **options chain data from I
 ---
 
 ## **Project Structure**
+ ```plaintext
 options-chain-analysis/
 ├── streamlit_app.py          # Main Streamlit application
 ├── option_chain.py           # Option chain data fetching module
 ├── margin_calculator.py      # Margin and premium calculations
 ├── requirements.txt          # Project dependencies
 ├── .env                      # Environment variables (not in repo)
-└── README.md                 # Project documentation```
+└── README.md                 # Project documentation
+```
 
 
  ###**Explanation of Key Files**
