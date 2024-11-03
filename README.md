@@ -94,3 +94,54 @@ options-chain-analysis/
 ├── requirements.txt          # Project dependencies
 ├── .env                      # Environment variables (not in repo)
 └── README.md                 # Project documentation
+### **Explanation of Key Files**
+
+- **`streamlit_app.py`**: Implements the **Streamlit interface** and handles **user input** and **data display**.
+- **`option_chain.py`**: Communicates with **Upstox API**, processes API responses, and includes **error handling**.
+- **`margin_calculator.py`**: Calculates **margin requirements** and **premium earnings** based on the selected options data.
+
+---
+
+### **Implementation Details**
+
+1. **`streamlit_app.py`**
+   - **Implements Streamlit Interface** for an interactive layout.
+   - **Handles User Input** and **Displays Results** with an organized layout and formatted numerical displays.
+
+2. **`option_chain.py`**
+   - **Fetches and Structures Options Data** using the **Upstox API**.
+   - **Error Handling** and **Data Validation** ensure reliable data.
+
+3. **`margin_calculator.py`**
+   - **Calculates Margins and Premiums** for each option contract.
+   - **Configurable Framework** for flexible margin calculations based on market rates and contract size.
+
+---
+
+### **Development Process & AI Usage**
+
+**AI tools** like **ChatGPT** were used to:
+
+- Discuss project structure and generate initial function signatures.
+- Assist with understanding the **Upstox API documentation**.
+- Optimize data processing steps with **pandas**.
+- Implement comprehensive **error handling** strategies.
+
+---
+
+### **Known Limitations**
+
+- **Simplified Margin Calculations**: May not fully align with broker requirements.
+- **Limited Instrument Availability**: Restricted to instruments supported by the Upstox API.
+- **Weekly Expiry Dates**: May not consider all market holidays.
+- **No Historical Data Analysis**: Currently focused on real-time data.
+
+---
+
+### **Future Improvements**
+
+- **Multi-Broker API Support**: Extend support to other brokers' APIs.
+- **Historical Data Analysis**: Add functionality for historical data.
+- **Advanced Analytics and Visualization**: Introduce more in-depth analysis tools.
+- **Position Sizing and Strategy Recommendations**: Guide users on trade sizing and option strategies.
+- **Backtesting Capabilities**: Implement a backtesting module for strategy analysis.
