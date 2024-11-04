@@ -22,10 +22,10 @@ def main():
         list(instrument_options.keys())
     )
     
-    # Calculate next few expiry dates (weekly for indexes)
+    # Calculate upcoming expiry dates (on Thursdays for weekly expirations)
     today = date.today()
     expiry_dates = [
-        today + timedelta(days=x) for x in range(30) 
+        today + timedelta(days=x) for x in range(30)
         if (today + timedelta(days=x)).weekday() == 3  # Thursday
     ]
     
