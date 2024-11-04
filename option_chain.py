@@ -1,24 +1,14 @@
-import os
 import requests
 import pandas as pd
+import streamlit as st
 from typing import Optional, Dict, Any
 
 def get_option_chain_data(instrument_name: str, expiry_date: str, side: str) -> pd.DataFrame:
     """
     Fetch option chain data for a given instrument and expiry date.
-    
-    Args:
-        instrument_name (str): Name of the instrument (e.g., "NSE_INDEX|Nifty 50")
-        expiry_date (str): Expiry date in YYYY-MM-DD format
-        side (str): Option type - "PE" for Put or "CE" for Call
-    
-    Returns:
-        pd.DataFrame: DataFrame containing option chain data
     """
-    ACCESS_TOKEN = os.getenv("UPSTOX_ACCESS_TOKEN")
-    if not ACCESS_TOKEN:
-        raise ValueError("Upstox API access token not found in environment variables")
-
+    ACCESS_TOKEN = st.secrets["UPSTOX_ACCESS_TOKEN"]
+    
     url = 'https://api.upstox.com/v2/option/chain'
     params = {
         'instrument_key': instrument_name,

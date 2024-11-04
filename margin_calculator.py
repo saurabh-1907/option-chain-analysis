@@ -1,18 +1,9 @@
-import os
-import requests
 import pandas as pd
-from typing import Optional, Dict, Any
+from typing import Dict, Any
 
 def calculate_margin_and_premium(data: pd.DataFrame) -> pd.DataFrame:
     """
     Calculate margin requirements and premium earned for option contracts.
-    
-    Args:
-        data (pd.DataFrame): DataFrame containing option data with columns:
-            instrument_name, strike_price, side, bid/ask
-    
-    Returns:
-        pd.DataFrame: Input DataFrame with additional columns for margin and premium
     """
     if 'bid/ask' not in data.columns:
         raise ValueError("DataFrame must contain 'bid/ask' column")

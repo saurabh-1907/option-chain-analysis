@@ -1,14 +1,10 @@
 import streamlit as st
 import pandas as pd
 from datetime import date, timedelta
-import os
-from dotenv import load_dotenv
 from option_chain import get_option_chain_data
 from margin_calculator import calculate_margin_and_premium
 
 def main():
-    load_dotenv()  # Load environment variables
-    
     st.set_page_config(page_title="Option Chain Analysis", layout="wide")
     st.title("Option Chain Analysis")
     
