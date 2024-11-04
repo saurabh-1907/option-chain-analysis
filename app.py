@@ -1,14 +1,10 @@
 import streamlit as st
 import pandas as pd
 from datetime import date, timedelta
-import os
-from dotenv import load_dotenv
 from option_chain import get_option_chain_data
 from margin_calculator import calculate_margin_and_premium
 
 def main():
-    load_dotenv()  # Load environment variables
-    
     st.set_page_config(page_title="Option Chain Analysis", layout="wide")
     st.title("Option Chain Analysis")
     
@@ -26,10 +22,10 @@ def main():
         list(instrument_options.keys())
     )
     
-    # Calculate next few expiry dates (weekly for indexes)
+    # Calculate upcoming expiry dates (on Thursdays for weekly expirations)
     today = date.today()
     expiry_dates = [
-        today + timedelta(days=x) for x in range(30) 
+        today + timedelta(days=x) for x in range(30)
         if (today + timedelta(days=x)).weekday() == 3  # Thursday
     ]
     
