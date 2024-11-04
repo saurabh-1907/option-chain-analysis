@@ -1,7 +1,4 @@
-import os
-import requests
 import pandas as pd
-from typing import Optional, Dict, Any
 
 def calculate_margin_and_premium(data: pd.DataFrame) -> pd.DataFrame:
     """
@@ -17,11 +14,10 @@ def calculate_margin_and_premium(data: pd.DataFrame) -> pd.DataFrame:
     if 'bid/ask' not in data.columns:
         raise ValueError("DataFrame must contain 'bid/ask' column")
     
-    # Calculate margin (this should ideally call the broker's margin API)
+    # Calculate margin
     def get_margin_required(row):
         strike_price = row['strike_price']
         price = row['bid/ask']
-        # Simplified margin calculation - replace with actual margin API call
         return strike_price * 0.2 + price * 100  # Example calculation
     
     data['margin_required'] = data.apply(get_margin_required, axis=1)
