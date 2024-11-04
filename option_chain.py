@@ -1,6 +1,6 @@
-import os
 import requests
 import pandas as pd
+import streamlit as st
 from typing import Optional, Dict, Any
 
 def get_option_chain_data(instrument_name: str, expiry_date: str, side: str) -> pd.DataFrame:
@@ -15,9 +15,9 @@ def get_option_chain_data(instrument_name: str, expiry_date: str, side: str) -> 
     Returns:
         pd.DataFrame: DataFrame containing option chain data
     """
-    ACCESS_TOKEN = os.getenv("UPSTOX_ACCESS_TOKEN")
+    ACCESS_TOKEN = st.secrets["UPSTOX_ACCESS_TOKEN"]
     if not ACCESS_TOKEN:
-        raise ValueError("Upstox API access token not found in environment variables")
+        raise ValueError("Upstox API access token not found in Streamlit secrets")
 
     url = 'https://api.upstox.com/v2/option/chain'
     params = {
