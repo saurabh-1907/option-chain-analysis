@@ -1,8 +1,5 @@
 import pandas as pd
-<<<<<<< HEAD
 from typing import Dict, Any
-=======
->>>>>>> 355b2f9e2fedd800c35cde251d7d996cc79a8db9
 
 def calculate_margin_and_premium(data: pd.DataFrame) -> pd.DataFrame:
     """

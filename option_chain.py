@@ -8,13 +8,10 @@ def get_option_chain_data(instrument_name: str, expiry_date: str, side: str) -> 
     Fetch option chain data for a given instrument and expiry date.
     """
     ACCESS_TOKEN = st.secrets["UPSTOX_ACCESS_TOKEN"]
-<<<<<<< HEAD
-    
-=======
+
     if not ACCESS_TOKEN:
         raise ValueError("Upstox API access token not found in Streamlit secrets")
 
->>>>>>> 355b2f9e2fedd800c35cde251d7d996cc79a8db9
     url = 'https://api.upstox.com/v2/option/chain'
     params = {
         'instrument_key': instrument_name,
